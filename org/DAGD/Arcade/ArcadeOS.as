@@ -1,4 +1,4 @@
-﻿package  {
+﻿package org.DAGD.Arcade {
 	
 	import flash.display.MovieClip;
 	
@@ -7,7 +7,7 @@
 		
 		
 		public function ArcadeOS() {
-			// constructor code
+			trace("test");
 		}
 	}
 	
