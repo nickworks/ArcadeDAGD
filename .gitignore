@@ -1,5 +1,7 @@
 # Custom
 *.swf
+*.exe
+*.bat
 
 # Build and Release Folders
 bin/
