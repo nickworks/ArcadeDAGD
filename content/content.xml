@@ -1,23 +1,23 @@
 <content>
 	<media>
 		<name>My Game 1</name>
-		<desc></desc>
+		<desc>blue pig</desc>
 		<thumb></thumb>
-		<tag>red</tag>
-		<tag>car</tag>
+		<tags>red</tags>
+		
 	</media>
 	<media>
 		<name>My Game 2</name>
-		<desc></desc>
+		<desc>red bird</desc>
 		<thumb></thumb>
-		<tag>blue</tag>
-		<tag>car</tag>
+		<tags>blue</tags>
+		
 	</media>
 	<media>
 		<name>My Game 3</name>
-		<desc></desc>
+		<desc>green bear</desc>
 		<thumb></thumb>
-		<tag>blue</tag>
-		<tag>truck</tag>
+		<tags>green</tags>
+		
 	</media>
 </content>
