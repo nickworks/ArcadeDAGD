@@ -16,9 +16,10 @@
 			var loader:URLLoader = new URLLoader(request);
 			loader.addEventListener(Event.COMPLETE, doneLoading);
 			
-			var file:File = File.applicationDirectory;
-			file = file.resolvePath("./content/procexp.bat");
+			var file:File;
+			file = File.applicationDirectory.resolvePath("./content/procexp.bat");
 			//FIXME: launch the bat file... needs more research?
+			//fixed?
 		}
 		
 		private function doneLoading(e:Event):void {
@@ -28,12 +29,13 @@
 			var i:int = 0;
 			for each(var media:XML in xml.media){
 				var bttn:MovieClip = new MovieClip();
+				//if(bttn.
 				bttn.graphics.beginFill(0x0);
 				bttn.graphics.drawCircle(0, 0, 20);
 				bttn.x = 100;
 				bttn.y = 100 + 50 * i;
 				addChild(bttn);
-				//trace(media.name);
+				trace(media.name);
 				i++;
 			}
 			
