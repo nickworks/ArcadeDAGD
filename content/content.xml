@@ -3,21 +3,120 @@
 		<name>My Game 1</name>
 		<desc>blue pig</desc>
 		<thumb></thumb>
-		<tags>red green</tags>
+		<tags cat="blue" />
+		<tags cat="quarz" />
+		<tags cat="trance">
+		</tags>
 		
 	</media>
 	<media>
 		<name>My Game 2</name>
 		<desc>red bird</desc>
 		<thumb></thumb>
-		<tags>blue&&green</tags>
+		<tags cat="red" />
+		<tags cat="stone" />
+		<tags cat="trance">
+		</tags>
 		
 	</media>
 	<media>
 		<name>My Game 3</name>
 		<desc>green bear</desc>
 		<thumb></thumb>
-		<tags>blue</tags>
+		<tags cat="blue" />
+		<tags cat="stone" />
+		<tags cat="techno">
+		</tags>
+		
+	</media>
+	<media>
+		<name>My Game 1</name>
+		<desc>blue pig</desc>
+		<thumb></thumb>
+		<tags cat="blue" />
+		<tags cat="quarz" />
+		<tags cat="trance">
+		</tags>
+		
+	</media>
+	<media>
+		<name>My Game 2</name>
+		<desc>red bird</desc>
+		<thumb></thumb>
+		<tags cat="red" />
+		<tags cat="stone" />
+		<tags cat="trance">
+		</tags>
+		
+	</media>
+	<media>
+		<name>My Game 3</name>
+		<desc>green bear</desc>
+		<thumb></thumb>
+		<tags cat="blue" />
+		<tags cat="stone" />
+		<tags cat="techno">
+		</tags>
+		
+	</media>
+	<media>
+		<name>My Game 1</name>
+		<desc>blue pig</desc>
+		<thumb></thumb>
+		<tags cat="blue" />
+		<tags cat="quarz" />
+		<tags cat="trance">
+		</tags>
+		
+	</media>
+	<media>
+		<name>My Game 2</name>
+		<desc>red bird</desc>
+		<thumb></thumb>
+		<tags cat="red" />
+		<tags cat="stone" />
+		<tags cat="trance">
+		</tags>
+		
+	</media>
+	<media>
+		<name>My Game 3</name>
+		<desc>green bear</desc>
+		<thumb></thumb>
+		<tags cat="blue" />
+		<tags cat="stone" />
+		<tags cat="techno">
+		</tags>
+		
+	</media>
+	<media>
+		<name>My Game 1</name>
+		<desc>blue pig</desc>
+		<thumb></thumb>
+		<tags cat="blue" />
+		<tags cat="quarz" />
+		<tags cat="trance">
+		</tags>
+		
+	</media>
+	<media>
+		<name>My Game 2</name>
+		<desc>red bird</desc>
+		<thumb></thumb>
+		<tags cat="red" />
+		<tags cat="stone" />
+		<tags cat="trance">
+		</tags>
+		
+	</media>
+	<media>
+		<name>My Game 3</name>
+		<desc>green bear</desc>
+		<thumb></thumb>
+		<tags cat="blue" />
+		<tags cat="stone" />
+		<tags cat="techno">
+		</tags>
 		
 	</media>
 </content>
