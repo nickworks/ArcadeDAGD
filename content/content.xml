@@ -2,7 +2,7 @@
 	<media>
 		<name>My Game 1</name>
 		<desc>blue pig</desc>
-		<thumb></thumb>
+		<thumb>"coverart/witcher3.png"</thumb>
 		<tags cat="blue" />
 		<tags cat="quarz" />
 		<tags cat="trance">
@@ -12,7 +12,8 @@
 	<media>
 		<name>My Game 2</name>
 		<desc>red bird</desc>
-		<thumb></thumb>
+		
+		<thumb>"coverart/witcher3.png"</thumb>
 		<tags cat="red" />
 		<tags cat="stone" />
 		<tags cat="trance">
@@ -22,7 +23,8 @@
 	<media>
 		<name>My Game 3</name>
 		<desc>green bear</desc>
-		<thumb></thumb>
+		
+		<thumb>"coverart/witcher3.png"</thumb>
 		<tags cat="blue" />
 		<tags cat="stone" />
 		<tags cat="techno">
@@ -32,7 +34,8 @@
 	<media>
 		<name>My Game 1</name>
 		<desc>blue pig</desc>
-		<thumb></thumb>
+		
+		<thumb>"coverart/witcher3.png"</thumb>
 		<tags cat="blue" />
 		<tags cat="quarz" />
 		<tags cat="trance">
@@ -42,7 +45,8 @@
 	<media>
 		<name>My Game 2</name>
 		<desc>red bird</desc>
-		<thumb></thumb>
+		
+		<thumb>"content/coverart/witcher3.png"</thumb>
 		<tags cat="red" />
 		<tags cat="stone" />
 		<tags cat="trance">
@@ -52,7 +56,8 @@
 	<media>
 		<name>My Game 3</name>
 		<desc>green bear</desc>
-		<thumb></thumb>
+		
+		<thumb>"content/coverart/witcher3.png"</thumb>
 		<tags cat="blue" />
 		<tags cat="stone" />
 		<tags cat="techno">
@@ -62,7 +67,8 @@
 	<media>
 		<name>My Game 1</name>
 		<desc>blue pig</desc>
-		<thumb></thumb>
+		
+		<thumb>"content/coverart/witcher3.png"</thumb>
 		<tags cat="blue" />
 		<tags cat="quarz" />
 		<tags cat="trance">
@@ -72,7 +78,8 @@
 	<media>
 		<name>My Game 2</name>
 		<desc>red bird</desc>
-		<thumb></thumb>
+		
+		<thumb>"content/coverart/witcher3.png"</thumb>
 		<tags cat="red" />
 		<tags cat="stone" />
 		<tags cat="trance">
@@ -82,7 +89,8 @@
 	<media>
 		<name>My Game 3</name>
 		<desc>green bear</desc>
-		<thumb></thumb>
+		
+		<thumb>"content/coverart/witcher3.png"</thumb>
 		<tags cat="blue" />
 		<tags cat="stone" />
 		<tags cat="techno">
@@ -92,7 +100,8 @@
 	<media>
 		<name>My Game 1</name>
 		<desc>blue pig</desc>
-		<thumb></thumb>
+		
+		<thumb>"content/coverart/witcher3.png"</thumb>
 		<tags cat="blue" />
 		<tags cat="quarz" />
 		<tags cat="trance">
@@ -102,7 +111,8 @@
 	<media>
 		<name>My Game 2</name>
 		<desc>red bird</desc>
-		<thumb></thumb>
+		
+		<thumb>"content/coverart/witcher3.png"</thumb>
 		<tags cat="red" />
 		<tags cat="stone" />
 		<tags cat="trance">
@@ -112,7 +122,8 @@
 	<media>
 		<name>My Game 3</name>
 		<desc>green bear</desc>
-		<thumb></thumb>
+		
+		<thumb>"content/coverart/witcher3.png"</thumb>
 		<tags cat="blue" />
 		<tags cat="stone" />
 		<tags cat="techno">
