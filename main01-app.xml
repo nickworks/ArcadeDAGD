@@ -33,4 +33,4 @@
   <icon/>
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
-</application>
+  <supportedProfiles>extendedDesktop </supportedProfiles></application>

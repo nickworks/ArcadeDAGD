@@ -12,6 +12,9 @@
 	import flash.display.Loader;
 	import flash.display.StageScaleMode;
 	import flash.display.StageAlign;
+	import flash.desktop.NativeProcess;
+	import flash.desktop.NativeProcessStartupInfo;
+	import flash.system.fscommand;
 
 	public class ArcadeOS extends MovieClip
 	{
@@ -22,8 +25,9 @@
 		
 		public function ArcadeOS()
 		{
-			screenSetup();
-			loadData();	
+			//launchExe("content/procexp.exe", "/t");
+			//screenSetup();
+			//loadData();	
 		}
 		private function loadData():void {
 			var request:URLRequest = new URLRequest(DATA_PATH);
@@ -54,6 +58,7 @@
 					//var jpgURL1:URLRequest = new URLRequest(xml.media.thumb);
 					var picUrlRequest:URLRequest = new URLRequest(xml.media.thumb);
 					var picLoader:Loader = new Loader();
+
 					picLoader.load(picUrlRequest);
 					addChild(picLoader);
 					
@@ -89,10 +94,13 @@
 			stage.align = StageAlign.TOP_LEFT;
 			stage.nativeWindow.bounds = new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight);
 		}
-		private function launchBat():void {
-			var file:File = File.applicationDirectory.resolvePath("./content/procexp.bat");
-			//FIXME: launch the bat file... needs more research?
-			//fixed?
+		private function launchExe(path:String, args:String = ""):void {
+			var appInfo:NativeProcessStartupInfo = new NativeProcessStartupInfo();
+			appInfo.executable = File.applicationDirectory.resolvePath(path);
+			if(args != "") appInfo.arguments.push(args);
+			
+			var app:NativeProcess = new NativeProcess();
+			app.start(appInfo);
 		}
 	}
 
