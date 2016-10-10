@@ -19,6 +19,8 @@
 		
 		public function Media(xml:XML) {
 			title = xml.name;
+			scaleX=.25;
+			scaleY=.25;
 			desc = xml.desc;
 			imgURL = File.applicationDirectory.resolvePath(xml.thumb).nativePath;
 			
