@@ -9,9 +9,13 @@
 	
 	public class Media extends MovieClip {
 		
-		var title:String;
-		var desc:String;
-		var imgURL:String;
+		public static const BX:int = 300;
+		public static const BY:int = 150;
+		public static const MARG:int = 50;
+		
+		private var title:String;
+		private var desc:String;
+		private var imgURL:String;
 		
 		public function Media(xml:XML) {
 			title = xml.name;

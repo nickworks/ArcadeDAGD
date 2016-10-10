@@ -26,8 +26,8 @@
 		public function ArcadeOS()
 		{
 			//launchExe("content/procexp.exe", "/t");
-			//screenSetup();
-			//loadData();	
+			screenSetup();
+			loadData();
 		}
 		private function loadData():void {
 			var request:URLRequest = new URLRequest(DATA_PATH);
@@ -43,65 +43,29 @@
 				var media:Media = new Media(xml.media[i]);
 				collection.push(media);
 				addChild(media);
-			}	
-		}
-		private function doLayout():void {
-			/*
-			for (var y: int = 0; y<mediaCount/8; y++)
-			{
-				for (var x: int = 0; x<8; x++)
-				{
-					if(i<mediaCount){
-					var bttn:MovieClip = new MovieClip();
-					trace(xml.media.thumb);
-					
-					//var jpgURL1:URLRequest = new URLRequest(xml.media.thumb);
-					var picUrlRequest:URLRequest = new URLRequest(xml.media.thumb);
-					var picLoader:Loader = new Loader();
-
-					picLoader.load(picUrlRequest);
-					addChild(picLoader);
-					
-					bttn.graphics.beginFill(0x0);
-					bttn.graphics.drawRect(0,0,163,227);
-					bttn.y = y * 350 + 50;
-					bttn.x = x * 200 + 350;
-
-					var txt:TextField=new TextField();
-					txt.text = xml.media.name[i] + xml.media.desc[i];
-
-					txt.textColor = 0xFF0000;
-					txt.x = bttn.x;
-					txt.y = bttn.y + 227;
-
-					addChild(txt);
-					//addChild(bttn);
-					trace(xml.media.name[i]);
-					i++;
-					//trace(bttn.x);
-					//trace(bttn.y);
-					}else{
-						break;
-					}
-
-				}
 			}
-			*/
-=======
-		private function layoutSetup(media:Media, i:int):void {
-			var cols:Number = Math.floor(stage.fullScreenWidth/media.BX);
-			var spaceX:int = media.BX+media.MARG;
-			var spaceY:int = media.BY+media.MARG;
-			var gridX:int = i%cols;
-			var gridY:int = Math.floor(i/cols);
+			layoutSetup();
+		}
+
+		private function layoutSetup():void {
+			trace(collection.length);
 			
-			media.x = gridX*spaceX;
-			media.y = gridY*spaceY;
+			for(var i = 0; i < collection.length; i++){
+				var media:Media = collection[i];
+				var cols:Number = Math.floor(stage.fullScreenWidth / Media.BX);
+				var spaceX:int = Media.BX + Media.MARG;
+				var spaceY:int = Media.BY + Media.MARG;
+				var gridX:int = i % cols;
+				var gridY:int = Math.floor(i / cols);
+				
+				media.x = gridX * spaceX;
+				media.y = gridY * spaceY;
+				trace(media.x, media.y);
+			}
 			//trace(gridX);
 			//trace(gridY);
 			//trace(media.BX);
 			//trace(cols);
->>>>>>> refs/remotes/origin/Gage
 		}
 		private function screenSetup():void
 		{
@@ -118,5 +82,4 @@
 			app.start(appInfo);
 		}
 	}
-
 }
