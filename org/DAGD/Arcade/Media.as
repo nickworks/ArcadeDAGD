@@ -9,10 +9,6 @@
 	
 	public class Media extends MovieClip {
 		
-		const BX:int = 300;
-		const BY:int = 150;
-		const MARG:int = 25;		
-		
 		var title:String;
 		var desc:String;
 		var imgURL:String;
