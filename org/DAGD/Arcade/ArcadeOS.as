@@ -25,15 +25,9 @@
 		
 		public function ArcadeOS()
 		{
-<<<<<<< HEAD
 			//launchExe("content/procexp.exe", "/t");
 			//screenSetup();
 			//loadData();	
-=======
-			screenSetup();
-			
-			loadData();	
->>>>>>> refs/remotes/origin/Gage
 		}
 		private function loadData():void {
 			var request:URLRequest = new URLRequest(DATA_PATH);
@@ -48,11 +42,9 @@
 			for(var i:int = 0; i < xml.media.length(); i++){	
 				var media:Media = new Media(xml.media[i]);
 				collection.push(media);
-				layoutSetup(media, i);
 				addChild(media);
 			}	
 		}
-<<<<<<< HEAD
 		private function doLayout():void {
 			/*
 			for (var y: int = 0; y<mediaCount/8; y++)
