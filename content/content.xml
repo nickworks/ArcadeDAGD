@@ -130,4 +130,15 @@
 		</tags>
 		
 	</media>
+	<media>
+		<name>My Game 3</name>
+		<desc>green bear</desc>
+		
+		<thumb>content/coverart/witcher3.png</thumb>
+		<tags cat="blue" />
+		<tags cat="stone" />
+		<tags cat="techno">
+		</tags>
+		
+	</media>
 </content>
