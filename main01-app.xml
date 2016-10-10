@@ -13,7 +13,8 @@
 	<text xml:lang="fr">French App name goes here</text>
 	<text xml:lang="ja">Japanese App name goes here</text>
 	</name>
---><application xmlns="http://ns.adobe.com/air/application/3.2">
+-->
+<application xmlns="http://ns.adobe.com/air/application/21.0">
   <id>main01</id>
   <versionNumber>1.0</versionNumber>
   <filename>main01</filename>
@@ -22,7 +23,7 @@
   <copyright/>
   <initialWindow>
     <content>main01.swf</content>
-    <systemChrome>standard</systemChrome>
+    <systemChrome>none</systemChrome>
     <transparent>false</transparent>
     <visible>true</visible>
     <fullScreen>false</fullScreen>
@@ -32,4 +33,4 @@
   <icon/>
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
-</application>
+  <supportedProfiles>extendedDesktop </supportedProfiles></application>

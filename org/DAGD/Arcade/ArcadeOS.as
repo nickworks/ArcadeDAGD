@@ -10,33 +10,43 @@
 	import flash.geom.*;
 	import flash.text.TextField;
 	import flash.display.Loader;
-
-
+	import flash.display.StageScaleMode;
+	import flash.display.StageAlign;
+	import flash.desktop.NativeProcess;
+	import flash.desktop.NativeProcessStartupInfo;
+	import flash.system.fscommand;
 
 	public class ArcadeOS extends MovieClip
 	{
 
-
+		const DATA_PATH:String = "./content/content.xml";
+		var data:XML;
+		var collection:Array = new Array();
+		
 		public function ArcadeOS()
 		{
-			var request:URLRequest = new URLRequest("./content/content.xml");
-			var loader:URLLoader = new URLLoader(request);
-			loader.addEventListener(Event.COMPLETE, doneLoading);
-
-			var file:File;
-			file = File.applicationDirectory.resolvePath("./content/procexp.bat");
-			//FIXME: launch the bat file... needs more research?
-			//fixed?
+			//launchExe("content/procexp.exe", "/t");
+			//screenSetup();
+			//loadData();	
 		}
-
-		private function doneLoading(e:Event):void
+		private function loadData():void {
+			var request:URLRequest = new URLRequest(DATA_PATH);
+			var loader:URLLoader = new URLLoader(request);
+			loader.addEventListener(Event.COMPLETE, doneLoadingData);
+		}
+		private function doneLoadingData(e:Event):void
 		{
 			var data:String = (e.target as URLLoader).data;
 			var xml:XML = new XML(data);
-			//trace(xml.media.length());
-			var mediaCount:int = xml.media.length();
-			var i:int = 0;
-
+				
+			for(var i:int = 0; i < xml.media.length(); i++){	
+				var media:Media = new Media(xml.media[i]);
+				collection.push(media);
+				addChild(media);
+			}	
+		}
+		private function doLayout():void {
+			/*
 			for (var y: int = 0; y<mediaCount/8; y++)
 			{
 				for (var x: int = 0; x<8; x++)
@@ -48,6 +58,7 @@
 					//var jpgURL1:URLRequest = new URLRequest(xml.media.thumb);
 					var picUrlRequest:URLRequest = new URLRequest(xml.media.thumb);
 					var picLoader:Loader = new Loader();
+
 					picLoader.load(picUrlRequest);
 					addChild(picLoader);
 					
@@ -75,16 +86,21 @@
 
 				}
 			}
+			*/
 		}
-		
 		private function screenSetup():void
 		{
-			//var fullScreenW: Number = stage.fullScreenWidth;
-			//var fullscreenH:Number = stage.fullScreenHeight;
-			//stage.stageWidth = windowWidth;
-			//stage.stageHeight = windowHeight;
-			//var windowWidth = stage.fullScreenWidth;
-			//var windowHeight = stage.fullScreenHeight;
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.align = StageAlign.TOP_LEFT;
+			stage.nativeWindow.bounds = new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight);
+		}
+		private function launchExe(path:String, args:String = ""):void {
+			var appInfo:NativeProcessStartupInfo = new NativeProcessStartupInfo();
+			appInfo.executable = File.applicationDirectory.resolvePath(path);
+			if(args != "") appInfo.arguments.push(args);
+			
+			var app:NativeProcess = new NativeProcess();
+			app.start(appInfo);
 		}
 	}
 
