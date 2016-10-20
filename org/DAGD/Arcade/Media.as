@@ -9,9 +9,9 @@
 	
 	public class Media extends MovieClip {
 		
-		public static const BX:int = 300;
-		public static const BY:int = 150;
-		public static const MARG:int = 50;
+		public static const BX:int = 460;
+		public static const BY:int = 215;
+		public static const MARG:int = 20;
 		
 		private var title:String;
 		private var desc:String;
@@ -19,8 +19,8 @@
 		
 		public function Media(xml:XML) {
 			title = xml.name;
-			scaleX=.25;
-			scaleY=.25;
+			//scaleX=.25;
+			//scaleY=.25;
 			desc = xml.desc;
 			imgURL = File.applicationDirectory.resolvePath(xml.thumb).nativePath;
 			
