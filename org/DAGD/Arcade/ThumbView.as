@@ -17,7 +17,6 @@
 
 				media.x = gridX * spaceX;
 				media.y = gridY * spaceY;
-				trace(media.x, media.y);
 
 			}
 		}

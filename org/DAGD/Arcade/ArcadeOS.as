@@ -21,16 +21,24 @@
 
 		private static const DATA_PATH:String = "./content/content.xml";
 		private var data:XML;
-		private var collection:Array = new Array();
+		public static var collection:Array = new Array();
 		
 		private var sideView:SideView;
 		private var mainView:MainView;
+		private var thumbView:ThumbView;
+		private var view:View;
+		
+		private var windowH:Number = stage.fullScreenHeight;
+		private var windowW:Number = stage.fullScreenWidth;
 		
 		public function ArcadeOS()
 		{
 			//launchExe("content/procexp.exe", "/t");
 			screenSetup();
 			loadData();
+			
+			view = new View();
+			//thumbView = new ThumbView();
 		}
 		private function loadData():void {
 			var request:URLRequest = new URLRequest(DATA_PATH);
@@ -47,34 +55,17 @@
 				collection.push(media);
 				addChild(media);
 			}
-			layoutSetup();
+			
+			//thumbView.layout(windowW,windowH);
+			view.layout(windowW,windowH);
+			
 		}
 
-		private function layoutSetup():void {
-			trace(collection.length);
-			
-			for(var i = 0; i < collection.length; i++){
-				var media:Media = collection[i];
-				var cols:Number = Math.floor(stage.fullScreenWidth / Media.BX);
-				var spaceX:int = Media.BX + Media.MARG;
-				var spaceY:int = Media.BY + Media.MARG;
-				var gridX:int = i % cols;
-				var gridY:int = Math.floor(i / cols);
-				
-				media.x = gridX * spaceX;
-				media.y = gridY * spaceY;
-				trace(media.x, media.y);
-			}
-			//trace(gridX);
-			//trace(gridY);
-			//trace(media.BX);
-			//trace(cols);
-		}
 		private function screenSetup():void
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
-			stage.nativeWindow.bounds = new Rectangle(0, 0, stage.fullScreenWidth, stage.fullScreenHeight);
+			stage.nativeWindow.bounds = new Rectangle(0, 0, windowW, windowH);
 		}
 		private function launchExe(path:String, args:String = ""):void {
 			var appInfo:NativeProcessStartupInfo = new NativeProcessStartupInfo();
