@@ -19,9 +19,12 @@
 	public class ArcadeOS extends MovieClip
 	{
 
-		const DATA_PATH:String = "./content/content.xml";
-		var data:XML;
-		var collection:Array = new Array();
+		private static const DATA_PATH:String = "./content/content.xml";
+		private var data:XML;
+		private var collection:Array = new Array();
+		
+		private var sideView:SideView;
+		private var mainView:MainView;
 		
 		public function ArcadeOS()
 		{
