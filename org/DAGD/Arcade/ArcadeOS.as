@@ -57,7 +57,7 @@
 			}
 			
 			//thumbView.layout(windowW,windowH);
-			view.layout(windowW,windowH);
+			mainView.layout(windowW,windowH);
 			
 		}
 

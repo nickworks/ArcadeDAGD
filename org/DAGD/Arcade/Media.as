@@ -11,7 +11,7 @@
 		
 		public static const BX:int = 460;
 		public static const BY:int = 215;
-		public static const MARG:int = 20;
+		public static const MARG:int = 5;
 		
 		private var title:String;
 		private var desc:String;
