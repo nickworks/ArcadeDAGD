@@ -25,19 +25,23 @@
 		
 		private var sideView:SideView;
 		private var mainView:MainView;
-		private var thumbView:ThumbView;
-		private var view:View;
 		
 		private var windowH:Number = stage.fullScreenHeight;
 		private var windowW:Number = stage.fullScreenWidth;
 		
 		public function ArcadeOS()
 		{
+			
+			sideView = new SideView();
+			mainView = new ThumbView();
+			
+			addChild(sideView);
+			addChild(mainView);
+			
 			//launchExe("content/procexp.exe", "/t");
 			screenSetup();
 			loadData();
 			
-			view = new View();
 			//thumbView = new ThumbView();
 		}
 		private function loadData():void {
@@ -49,16 +53,14 @@
 		{
 			var data:String = (e.target as URLLoader).data;
 			var xml:XML = new XML(data);
-				
-			for(var i:int = 0; i < xml.media.length(); i++){	
-				var media:Media = new Media(xml.media[i]);
-				collection.push(media);
-				addChild(media);
+			
+			
+			for(var i:int = 0; i < xml.media.length(); i++){
+				collection.push(new MediaModel(xml.media[i]));
 			}
 			
-			//thumbView.layout(windowW,windowH);
-			mainView.layout(windowW,windowH);
 			
+			layout(true);
 		}
 
 		private function screenSetup():void
@@ -67,7 +69,25 @@
 			stage.align = StageAlign.TOP_LEFT;
 			stage.nativeWindow.bounds = new Rectangle(0, 0, windowW, windowH);
 		}
-		private function launchExe(path:String, args:String = ""):void {
+		
+		private function layout(dataUpdated:Boolean):void {
+			var w:int = stage.stageWidth;
+			var h:int = stage.stageHeight;
+			
+			if(dataUpdated){
+				mainView.dataUpdated();
+				sideView.dataUpdated();
+			}
+			
+			var sideViewWidth:int = 300;
+			
+			mainView.layout(w - sideViewWidth, h);
+			mainView.x = sideViewWidth;
+			
+			sideView.layout(sideViewWidth, h);
+			
+		}
+		private static function launchExe(path:String, args:String = ""):void {
 			var appInfo:NativeProcessStartupInfo = new NativeProcessStartupInfo();
 			appInfo.executable = File.applicationDirectory.resolvePath(path);
 			if(args != "") appInfo.arguments.push(args);
