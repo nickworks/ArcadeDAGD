@@ -29,9 +29,14 @@
 		private var windowH:Number = stage.fullScreenHeight;
 		private var windowW:Number = stage.fullScreenWidth;
 		
+		/**
+		* ArcadeOS() sets up the screen and loads data by
+		* instantiating a new SideView and MainView,
+		* adding them to the display tree, then
+		* runs the screenSetup and loadData functions
+		*/
 		public function ArcadeOS()
 		{
-			
 			sideView = new SideView();
 			mainView = new ThumbView();
 			
@@ -41,14 +46,29 @@
 			//launchExe("content/procexp.exe", "/t");
 			screenSetup();
 			loadData();
-			
-			//thumbView = new ThumbView();
 		}
+		/**
+		* loadData() pulls data from the .xml file and
+		* loads it into the URLLOader, when it is finished,
+		* it launches an event and runs doneLoadingData()
+		*/
 		private function loadData():void {
 			var request:URLRequest = new URLRequest(DATA_PATH);
 			var loader:URLLoader = new URLLoader(request);
 			loader.addEventListener(Event.COMPLETE, doneLoadingData);
 		}
+		/**
+		* doneLoadingData() is used to initate the use of data after
+		* the screen is set up
+		*
+		* The function runs through the xml media segments and
+		* pushes the data into the "collection" array
+		*
+		* when finished, it launches the layout function with 
+		* a boolean perameter of true
+		*
+		* @peram e:Event this peram launches doneLoadingData()
+		*/
 		private function doneLoadingData(e:Event):void
 		{
 			var data:String = (e.target as URLLoader).data;
@@ -62,14 +82,22 @@
 			
 			layout(true);
 		}
-
+		/**
+		* screenSetup() sets the stage's scaleMode, alignment,
+		* and its window bounds to be fullscreen
+		*/
 		private function screenSetup():void
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.nativeWindow.bounds = new Rectangle(0, 0, windowW, windowH);
 		}
-		
+		/**
+		* layout() places the MainView and the SideView on the screen
+		*
+		* @peram dataUploaded:Boolean this peram launches layout()
+		* when doneLoadingData() has finished loading data
+		*/
 		private function layout(dataUpdated:Boolean):void {
 			var w:int = stage.stageWidth;
 			var h:int = stage.stageHeight;
