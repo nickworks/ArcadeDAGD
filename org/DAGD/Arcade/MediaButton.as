@@ -23,8 +23,7 @@
 		*
 		* Then runs the loadImage function with the URL data
 		*
-		* @param data:MediaModel called in ThumbView to pull
-		* data from MediaModel
+		* @param data:MediaModel called in ThumbView to pull data from MediaModel
 		*/
 		public function MediaButton(data:MediaModel) {
 			addChild(imgMask);
@@ -42,14 +41,12 @@
 		* Then it runs the following function, handleLoaded, after 
 		* the event is completed
 		*
-		*SHOULD LINE 54 SWAP WITH LINE 55?????????????????????????????????????????????????????????????????????????????????????????
-		*
-		* @param imgURL takes the url data from the MediaButton function and
-		* uses it for the URLRequest
+		* @param imgURL takes the url data from the MediaButton function and uses it for the URLRequest
 		*/
 		private function loadImage(imgURL):void {
 			var request:URLRequest = new URLRequest(imgURL);
 			var loader:Loader = new Loader();
+			
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, handleLoaded);
 			loader.load(request);
 		}
@@ -61,8 +58,7 @@
 		* Uses the media's iwdth and height to create a mask
 		* insuring each media is displayed at the same size
 		*
-		* @param e:Event an event listener waiting for the data to finish loading
-		* before running handleLoaded()
+		* @param e:Event an event listener waiting for the data to finish loading before running handleLoaded()
 		*/
 		private function handleLoaded(e:Event):void {
 			e.target.removeEventListener(Event.COMPLETE, handleLoaded);

@@ -12,8 +12,7 @@
 		* and overrides the layout function in the View class
 		*
 		* @param w:int pulls in the width of the media window
-		* @param h:int pulls in a set height from ArcadeOS
-		* for the media window
+		* @param h:int pulls in a set height from ArcadeOS for the media window
 		*/
 		override public function layout(w: int, h: int): void {
 			graphics.beginFill(0xFFAAAA);

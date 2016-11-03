@@ -20,8 +20,7 @@
 		* layouts.
 		*
 		* @param w:int pulls in the width of the media window
-		* @param h:int pulls in a height from ArcadeOS
-		* for the media window
+		* @param h:int pulls in a height from ArcadeOS for the media window
 		*/
 		public function layout(w: int, h: int): void {
 			/* override this */

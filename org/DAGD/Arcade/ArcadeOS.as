@@ -67,7 +67,7 @@
 		* when finished, it launches the layout function with 
 		* a boolean perameter of true
 		*
-		* @peram e:Event this peram launches doneLoadingData()
+		* @param e:Event this peram launches doneLoadingData()
 		*/
 		private function doneLoadingData(e:Event):void
 		{
@@ -95,8 +95,7 @@
 		/**
 		* layout() places the MainView and the SideView on the screen
 		*
-		* @peram dataUploaded:Boolean this peram launches layout()
-		* when doneLoadingData() has finished loading data
+		* @param dataUploaded:Boolean this peram launches layout() when doneLoadingData() has finished loading data
 		*/
 		private function layout(dataUpdated:Boolean):void {
 			var w:int = stage.stageWidth;

@@ -47,7 +47,7 @@
 		* through the dispose function
 		* Then it removes the buttons from the screen
 		* 
-		*Finally instantiating a new buttons array to replace the old one
+		* Finally instantiating a new buttons array to replace the old one
 		*/
 		private function removeButtons():void {
 			// REMOVE ALL OLD BUTTONS:
@@ -68,10 +68,8 @@
 		* the media to a grid position and placing them in their proper
 		* x and y coordinates.
 		*
-		* @param w:int pulls in the width of the stage 
-		* minus the width of the SideView
-		* @param h:int pulls in a set height from ArcadeOS
-		* for the media window
+		* @param w:int pulls in the width of the stage minus the width of the SideView
+		* @param h:int pulls in a set height from ArcadeOS for the media window
 		*/
 		override public function layout(w: int, h: int): void {
 			
