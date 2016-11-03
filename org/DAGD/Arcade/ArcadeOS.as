@@ -18,6 +18,8 @@
 
 	public class ArcadeOS extends MovieClip
 	{
+		
+		private static var selectedView:View;
 
 		private static const DATA_PATH:String = "./content/content.xml";
 		private var data:XML;
@@ -28,6 +30,7 @@
 		
 		private var windowH:Number = stage.fullScreenHeight;
 		private var windowW:Number = stage.fullScreenWidth;
+	
 		
 		/**
 		* ArcadeOS() sets up the screen and loads data by
@@ -121,6 +124,13 @@
 			
 			var app:NativeProcess = new NativeProcess();
 			app.start(appInfo);
+		}
+		public static function setSelectedView(view:View):void {
+			
+			if(selectedView != null) selectedView.setSelected(false);
+			selectedView = view;
+			selectedView.setSelected(true);
+			
 		}
 	}
 }

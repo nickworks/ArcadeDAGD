@@ -1,11 +1,14 @@
 ﻿package org.DAGD.Arcade {
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
+	import flash.events.Event;
 
 	public class View extends Sprite {
 
+		protected var selected:Boolean = false;
 
 		public function View() {
+			addEventListener(Event.ENTER_FRAME, handleFrame);
 		}
 		/**
 		* dataUploaded() is primarily set for the MainView's children
@@ -29,8 +32,18 @@
 		* dispose() removes data that is no longer needed
 		*
 		*/
+		private function handleFrame(e:Event):void {
+			update();
+		}
+		protected function update():void {
+			
+		}
 		public function dispose():void {
 			/* override this */
+			removeEventListener(Event.ENTER_FRAME, handleFrame);
+		}
+		public function setSelected(isSelected:Boolean):void {
+			selected = isSelected;
 		}
 	}
 }

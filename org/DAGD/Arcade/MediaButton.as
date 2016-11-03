@@ -8,6 +8,10 @@
 	import flash.text.TextFieldAutoSize;
 	import flash.display.Sprite;
 	import flash.display.Bitmap;
+	import flash.text.AntiAliasType;
+	import flash.text.TextFormat;
+	import flash.events.MouseEvent;
+	import flash.display.BlendMode;
 	
 	public class MediaButton extends View {
 		
@@ -15,8 +19,13 @@
 		public static const HEIGHT:int = 215;
 		public static const MARGIN:int = 10;
 		
-		private var imgMask:Sprite = new Sprite();
+		private static const TXT_BOX_HEIGHT:int = 30;
 		
+		private var imgMask:Sprite = new Sprite();
+		private var txtBox:Sprite = new Sprite();
+		private var content:Sprite = new Sprite();
+		private var label:TextField;
+
 		/**
 		* MediaButton() loads the information needed to display
 		* the media and other important information on the screen
@@ -26,13 +35,36 @@
 		* @param data:MediaModel called in ThumbView to pull data from MediaModel
 		*/
 		public function MediaButton(data:MediaModel) {
+			addChild(content);
 			addChild(imgMask);
 			imgMask.graphics.beginFill(0x0);
 			imgMask.graphics.drawRect(0,0,WIDTH,HEIGHT);
 			
-			label.autoSize = TextFieldAutoSize.LEFT;
-			label.text = data.title;
+			content.mask = imgMask;
+			
+			
+			setupLabel(data.title);
 			loadImage(data.imgURL);
+			
+			addEventListener(MouseEvent.MOUSE_OVER, handleMouseOver);
+		}
+		
+		private function setupLabel(caption:String):void {
+
+			content.addChild(txtBox);			
+			
+			label = new TextField();
+			label.multiline = false;
+			label.selectable = false;
+			label.autoSize = TextFieldAutoSize.LEFT;
+			label.defaultTextFormat = new TextFormat("Arial", 20, 0xFFFFFF);
+			label.text = caption;
+			label.antiAliasType = AntiAliasType.NORMAL;
+			label.x = 5;
+			txtBox.addChild(label);
+			txtBox.graphics.beginFill(0x000000, .8);
+			txtBox.graphics.drawRect(0,0,WIDTH, TXT_BOX_HEIGHT);
+		
 		}
 		/**
 		* loadImage() uses the information gathered from MediaButton
@@ -55,7 +87,7 @@
 		* function and uses the url's information and turns it 
 		* into a bitmap to be displayed
 		*
-		* Uses the media's iwdth and height to create a mask
+		* Uses the media's width and height to create a mask
 		* insuring each media is displayed at the same size
 		*
 		* @param e:Event an event listener waiting for the data to finish loading before running handleLoaded()
@@ -63,8 +95,15 @@
 		private function handleLoaded(e:Event):void {
 			e.target.removeEventListener(Event.COMPLETE, handleLoaded);
 			var img:Bitmap = e.target.content;
-			img.mask = imgMask;
-			addChildAt(img, 0);
+			content.addChildAt(img, 0);
+		}
+		protected override function update():void {
+			
+			if(selected){
+				txtBox.y += ((HEIGHT - TXT_BOX_HEIGHT) - txtBox.y) * .5;
+			} else {
+				txtBox.y += (HEIGHT - txtBox.y) * .5;
+			}
 		}
 		/**
 		* This function disposes of all MediaButton information
@@ -72,6 +111,11 @@
 		*/
 		public override function dispose():void {
 			// do cleanup here
+			super.dispose();
+			removeEventListener(MouseEvent.MOUSE_OVER, handleMouseOver);
+		}
+		private function handleMouseOver(e:MouseEvent):void {
+			ArcadeOS.setSelectedView(this);
 		}
 	}
 }
