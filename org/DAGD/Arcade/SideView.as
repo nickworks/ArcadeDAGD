@@ -15,6 +15,7 @@
 		* @param h:int pulls in a set height from ArcadeOS for the media window
 		*/
 		override public function layout(w: int, h: int): void {
+			super.layout(w, h);
 			graphics.beginFill(0xFFAAAA);
 			graphics.drawRect(0, 0, w, h);
 		}

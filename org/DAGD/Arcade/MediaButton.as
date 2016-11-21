@@ -25,6 +25,10 @@
 		private var txtBox:Sprite = new Sprite();
 		private var content:Sprite = new Sprite();
 		private var label:TextField;
+		
+		private var data:MediaModel;
+		
+		private var index:int;
 
 		/**
 		* MediaButton() loads the information needed to display
@@ -34,7 +38,10 @@
 		*
 		* @param data:MediaModel called in ThumbView to pull data from MediaModel
 		*/
-		public function MediaButton(data:MediaModel) {
+		public function MediaButton(index:int, data:MediaModel) {
+			this.index = index;
+			this.data = data;
+			
 			addChild(content);
 			addChild(imgMask);
 			imgMask.graphics.beginFill(0x0);
@@ -42,11 +49,11 @@
 			
 			content.mask = imgMask;
 			
-			
 			setupLabel(data.title);
 			loadImage(data.imgURL);
 			
 			addEventListener(MouseEvent.MOUSE_OVER, handleMouseOver);
+			addEventListener(MouseEvent.CLICK, handleClick);
 		}
 		
 		private function setupLabel(caption:String):void {
@@ -97,8 +104,7 @@
 			var img:Bitmap = e.target.content;
 			content.addChildAt(img, 0);
 		}
-		protected override function update():void {
-			
+		public override function update():void {			
 			if(selected){
 				txtBox.y += ((HEIGHT - TXT_BOX_HEIGHT) - txtBox.y) * .5;
 			} else {
@@ -113,9 +119,19 @@
 			// do cleanup here
 			super.dispose();
 			removeEventListener(MouseEvent.MOUSE_OVER, handleMouseOver);
+			removeEventListener(MouseEvent.CLICK, handleClick);
 		}
 		private function handleMouseOver(e:MouseEvent):void {
 			ArcadeOS.setSelectedView(this);
+		}
+		private function handleClick(e:MouseEvent):void {
+			activate();
+		}
+		public override function activate():void {
+			ArcadeOS.changeMainView(new ProjectView(data));
+		}
+		public override function lookupLeft():void {
+			View(parent).lookupLeft();
 		}
 	}
 }

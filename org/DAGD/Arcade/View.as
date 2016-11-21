@@ -5,10 +5,11 @@
 
 	public class View extends Sprite {
 
+		protected var w:int;
+		protected var h:int;
 		protected var selected:Boolean = false;
 
 		public function View() {
-			addEventListener(Event.ENTER_FRAME, handleFrame);
 		}
 		/**
 		* dataUploaded() is primarily set for the MainView's children
@@ -27,23 +28,26 @@
 		*/
 		public function layout(w: int, h: int): void {
 			/* override this */
+			this.w = w;
+			this.h = h;
 		}
-		/**
-		* dispose() removes data that is no longer needed
-		*
-		*/
-		private function handleFrame(e:Event):void {
-			update();
-		}
-		protected function update():void {
-			
+		public function update():void {
+			/* override this */
 		}
 		public function dispose():void {
 			/* override this */
-			removeEventListener(Event.ENTER_FRAME, handleFrame);
 		}
 		public function setSelected(isSelected:Boolean):void {
 			selected = isSelected;
+		}
+		public function activate():void {
+			/* override this */
+		}
+		public function scroll(amount:Number):void {
+			/* override this */
+		}
+		public function lookupLeft():void {
+			/* override this */
 		}
 	}
 }

@@ -15,14 +15,19 @@
 	import flash.desktop.NativeProcess;
 	import flash.desktop.NativeProcessStartupInfo;
 	import flash.system.fscommand;
+	import flash.events.MouseEvent;
 
 	public class ArcadeOS extends MovieClip
 	{
-		
+		private static var main:ArcadeOS;
 		private static var selectedView:View;
-
 		private static const DATA_PATH:String = "./content/content.xml";
+		private static const SCROLL_MULT:int = 10;
+		
 		private var data:XML;
+		/**
+		 * This collection stores MediaModel objects.
+		 */
 		public static var collection:Array = new Array();
 		
 		private var sideView:SideView;
@@ -40,15 +45,30 @@
 		*/
 		public function ArcadeOS()
 		{
-			sideView = new SideView();
-			mainView = new ThumbView();
+			Keyboard.setup(stage);
 			
+			main = this;
+			sideView = new SideView();
 			addChild(sideView);
-			addChild(mainView);
+
+			changeMainView(new ThumbView());
 			
 			//launchExe("content/procexp.exe", "/t");
 			screenSetup();
 			loadData();
+			
+			stage.addEventListener(MouseEvent.MOUSE_WHEEL, handleScrollWheel);
+			addEventListener(Event.ENTER_FRAME, handleFrame);
+		}
+		private function handleFrame(e:Event):void {
+
+			if(Keyboard.onDown(Keyboard.LEFT)){
+				if(selectedView) selectedView.lookupLeft();
+			}
+			
+			if(mainView) mainView.update();
+			if(sideView) sideView.update();
+			Keyboard.update();
 		}
 		/**
 		* loadData() pulls data from the .xml file and
@@ -117,6 +137,9 @@
 			sideView.layout(sideViewWidth, h);
 			
 		}
+		private function handleScrollWheel(e:MouseEvent):void {
+			if(mainView) mainView.scroll(e.delta * SCROLL_MULT);
+		}
 		private static function launchExe(path:String, args:String = ""):void {
 			var appInfo:NativeProcessStartupInfo = new NativeProcessStartupInfo();
 			appInfo.executable = File.applicationDirectory.resolvePath(path);
@@ -131,6 +154,18 @@
 			selectedView = view;
 			selectedView.setSelected(true);
 			
+		}
+		public static function getSelectedView():View {
+			return selectedView;
+		}
+		public static function changeMainView(newMainView:MainView):void {
+			if(main.mainView != null){
+				main.mainView.dispose();
+				main.removeChild(main.mainView);
+			}
+			main.mainView = newMainView;
+			main.addChild(newMainView);
+			main.layout(false);
 		}
 	}
 }

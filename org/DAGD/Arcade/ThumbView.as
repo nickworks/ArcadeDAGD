@@ -9,6 +9,12 @@
 			makeButtons();
 			
 		}
+		public override function update():void {
+			super.update();
+			for each(var bttn:MediaButton in buttons){
+				bttn.update();
+			}
+		}
 		/**
 		* dataUpdated() is initiated after the data has finished loading
 		* in ArcadeOS
@@ -36,7 +42,7 @@
 			// CREATE NEW BUTTONS:
 			for (var i = 0; i < ArcadeOS.collection.length; i++) {
 				var data: MediaModel = ArcadeOS.collection[i];
-				var bttn: MediaButton = new MediaButton(data);
+				var bttn: MediaButton = new MediaButton(i, data);
 				addChild(bttn);
 				buttons.push(bttn);
 			}
@@ -73,6 +79,8 @@
 		*/
 		override public function layout(w: int, h: int): void {
 			
+			super.layout(w, h);
+			
 			var cols: Number = Math.floor(w / MediaButton.WIDTH);
 			var spaceX: int = MediaButton.WIDTH + MediaButton.MARGIN;
 			var spaceY: int = MediaButton.HEIGHT + MediaButton.MARGIN;
@@ -89,7 +97,18 @@
 
 			}
 		}
-
+		override public function dispose():void {
+			super.dispose();
+			for each(var bttn:MediaButton in buttons){
+				bttn.dispose();
+			}
+		}
+		override public function lookupLeft():void {
+			var index:int = buttons.indexOf(ArcadeOS.getSelectedView());
+			index --;
+			if(index >= 0){
+				ArcadeOS.setSelectedView(buttons[index]);
+			}
+		}
 	}
-
 }
