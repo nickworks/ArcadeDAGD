@@ -27,6 +27,7 @@
 		 * This collection stores MediaModel objects.
 		 */
 		public static var collection: Array = new Array();
+		public static var tags: Array = new Array();
 
 		private var sideView: SideView;
 		private var mainView: MainView;
@@ -43,7 +44,7 @@
 		 */
 		public function ArcadeOS() {
 			Keyboard.setup(stage);
-
+			
 			main = this;
 			sideView = new SideView();
 			addChild(sideView);
@@ -101,12 +102,20 @@
 		private function doneLoadingData(e: Event): void {
 			var data: String = (e.target as URLLoader).data;
 			var xml: XML = new XML(data);
-
-
+			
 			for (var i: int = 0; i < xml.media.length(); i++) {
 				collection.push(new MediaModel(xml.media[i]));
+				//index =
 			}
-
+			
+			for (var t:int = 0; t<xml.media.tags.tag.length(); t++){
+				var index:int;
+				index = tags.indexOf(xml.media.tags.tag[t]);
+				if(index<0)tags.push(xml.media.tags.tag[t]);
+				trace(index);
+				trace(xml.media.tags.tag[t]);
+			}
+			trace(tags);
 
 			layout(true);
 		}

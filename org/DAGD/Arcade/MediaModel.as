@@ -7,6 +7,7 @@
 		public var title:String;
 		public var desc:String;
 		public var imgURL:String;
+		public var tagz: Array;
 		
 		/**
 		* MediaModel() is the model of media data and what should be stored
@@ -17,6 +18,9 @@
 		public function MediaModel(xml:XML) {
 			title = xml.name;
 			desc = xml.desc;
+			//trace("boom");
+			//trace(xml.media.tags.tag);
+			
 			imgURL = File.applicationDirectory.resolvePath(xml.thumb).nativePath;
 		}
 	}

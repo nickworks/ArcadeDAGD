@@ -39,13 +39,14 @@
 
 			removeButtons();
 
-			// CREATE NEW BUTTONS:
+			// CREATE NEW MEDIA BUTTONS:
 			for (var i = 0; i < ArcadeOS.collection.length; i++) {
 				var data: MediaModel = ArcadeOS.collection[i];
 				var bttn: MediaButton = new MediaButton(i, data);
 				addChild(bttn);
 				buttons.push(bttn);
 			}
+			
 		}
 		/**
 		 * removeButtons() runs through the "buttons" array
