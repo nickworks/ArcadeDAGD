@@ -105,11 +105,11 @@
 			
 			for (var i: int = 0; i < xml.media.length(); i++) {
 				collection.push(new MediaModel(xml.media[i]));
-				//index =
+				
 			}
-			
 			for (var t:int = 0; t<xml.media.tags.tag.length(); t++){
 				var index:int;
+				tags.push("Sandwich");
 				index = tags.indexOf(xml.media.tags.tag[t]);
 				if(index<0)tags.push(xml.media.tags.tag[t]);
 				trace(index);
@@ -166,6 +166,8 @@
 			if (selectedView != null) selectedView.setSelected(false);
 			selectedView = view;
 			selectedView.setSelected(true);
+			main.mainView.selectedY=selectedView.y
+			//trace(selectedView.y);
 
 		}
 		public static function getSelectedView(): View {
