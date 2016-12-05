@@ -26,12 +26,15 @@
 		private var content: Sprite = new Sprite();
 		private var label: TextField;
 		private var sayMyName: String;
+		public var activated: Boolean = false;
 		private var defaultColor = new ColorTransform();
 		private var hoverColor = new ColorTransform();
 		
 		private var sideView:SideView;
+		//private var mainView:MainView;
+		//private var sideView:SideView;
 
-		private var data: MediaModel;
+		//private var data: MediaModel;
 
 		private var index: int;
 
@@ -130,7 +133,15 @@
 		}
 		public override function activate(): void {
 			trace(sayMyName);
-			sideView.tagTriggered = true;
+			activated = !activated;
+			if (activated)ArcadeOS.clickedTags.push(sayMyName);
+			if(!activated)ArcadeOS.clickedTags.splice(sayMyName);
+			
+			//var mainView:MainView=new MainView();
+			//ArcadeOS.changeMainView(ArcadeOS.mainView);
+			
+			//sideView.tagTriggered = true;
+			
 		}
 		private function handleLoaded(e: Event): void {
 

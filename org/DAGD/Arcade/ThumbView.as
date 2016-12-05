@@ -3,6 +3,7 @@
 	public class ThumbView extends MainView {
 
 		private var buttons: Array = new Array(); // holds MediaButton objects
+		//private var tagButton:TagButton= new TagButton();
 
 		public function ThumbView() {
 
@@ -43,6 +44,10 @@
 			for (var i = 0; i < ArcadeOS.collection.length; i++) {
 				var data: MediaModel = ArcadeOS.collection[i];
 				var bttn: MediaButton = new MediaButton(i, data);
+				
+				//if(data.tagz.indexOf(tagButton.sayMyName)<0)tags.push(xml.media.tags.tag[t]);
+				//var tag: String = xml.media.tags.tag[i];
+				trace(data.tagz);//works
 				addChild(bttn);
 				buttons.push(bttn);
 			}

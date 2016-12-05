@@ -29,6 +29,8 @@
 		public static var collection: Array = new Array();
 		public static var tags: Array = new Array();
 
+		public static var clickedTags: Array = new Array();
+
 		private var sideView: SideView;
 		private var mainView: MainView;
 
@@ -76,6 +78,11 @@
 			if (mainView) mainView.update();
 			if (sideView) sideView.update();
 			Keyboard.update();
+			
+			for each(var t:String in tags){
+				
+			}
+			trace(clickedTags);
 		}
 		/**
 		 * loadData() pulls data from the .xml file and
@@ -103,20 +110,17 @@
 			var data: String = (e.target as URLLoader).data;
 			var xml: XML = new XML(data);
 			
+			for (var t:int = 0; t<xml.media.tags.tag.length(); t++){
+				var tag = xml.media.tags.tag[t];
+				var alreadyExists = false;
+				for each(var tag1:String in tags){
+					if(tag1 == tag) alreadyExists = true;
+				}
+				if(alreadyExists == false)tags.push(tag);
+			}
 			for (var i: int = 0; i < xml.media.length(); i++) {
 				collection.push(new MediaModel(xml.media[i]));
-				
 			}
-			for (var t:int = 0; t<xml.media.tags.tag.length(); t++){
-				var index:int;
-				tags.push("Sandwich");
-				index = tags.indexOf(xml.media.tags.tag[t]);
-				if(index<0)tags.push(xml.media.tags.tag[t]);
-				trace(index);
-				trace(xml.media.tags.tag[t]);
-			}
-			trace(tags);
-
 			layout(true);
 		}
 		/**
@@ -181,6 +185,9 @@
 			main.mainView = newMainView;
 			main.addChild(newMainView);
 			main.layout(false);
+		}
+		public function toggleTags():Array{
+			
 		}
 	}
 }
