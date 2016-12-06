@@ -26,6 +26,8 @@
 		 */
 		public override function dataUpdated(): void {
 			makeButtons();
+			trace("aloha");
+			
 		}
 
 		/**

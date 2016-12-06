@@ -33,6 +33,7 @@
 
 		private var sideView: SideView;
 		private var mainView: MainView;
+		private var thumbView: ThumbView;
 
 		private var windowH: Number = stage.fullScreenHeight;
 		private var windowW: Number = stage.fullScreenWidth;
@@ -186,8 +187,13 @@
 			main.addChild(newMainView);
 			main.layout(false);
 		}
-		public function toggleTags():Array{
-			
+		public static function toggleTags(clickedTag:String):void{
+			trace(clickedTag);
+			var thumbView = new ThumbView();
+			thumbView.dataUpdated();
+			//activated = !activated;
+			//if (activated)ArcadeOS.clickedTags.push(sayMyName);
+			//if(!activated)ArcadeOS.clickedTags.splice(sayMyName);
 		}
 	}
 }
