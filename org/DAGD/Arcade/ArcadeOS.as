@@ -26,10 +26,10 @@
 		/**
 		 * This collection stores MediaModel objects.
 		 */
-		public static var collection: Array = new Array();
-		public static var tags: Array = new Array();
-
-		public static var clickedTags: Array = new Array();
+		public static var collection: Array = new Array();//all media files
+		public static var tags: Array = new Array();// collection of all tags used in projects
+		public static var clickedTags: Array = new Array(); // tags user selected to filter out the collection
+		public static var viewStorage: Array = new Array();// array of views to be recalled when switching views
 
 		private var sideView: SideView;
 		private var mainView: MainView;
@@ -178,9 +178,23 @@
 		public static function getSelectedView(): View {
 			return selectedView;
 		}
+		//--------------------------------------------------------------------------Add to Array to be recalled later
+		public static function goBackToTile():void{
+			if(viewStorage!=null){
+				trace("stuff in storage");
+				for each(var oldView:MainView in viewStorage){
+					changeMainView(oldView);
+					viewStorage.splice(oldView,1);
+				}
+				viewStorage = new Array;
+				
+			}
+		}
 		public static function changeMainView(newMainView: MainView): void {
 			if (main.mainView != null) {
-				main.mainView.dispose();
+				viewStorage.push(main.mainView);
+				trace("pop "+viewStorage);
+				//main.mainView.dispose();
 				main.removeChild(main.mainView);
 			}
 			main.mainView = newMainView;

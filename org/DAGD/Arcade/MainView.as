@@ -41,8 +41,6 @@
 			//trace(selectedY);
 			//trace(thumbHeight);
 			
-			
-			
 			y += (targetY - y) * .1;
 			
 
