@@ -187,35 +187,47 @@
 			main.addChild(newMainView);
 			main.layout(false);
 		}
-		public static function toggleTags(): void {
-			var thumbView: ThumbView = new ThumbView();
-			thumbView.dataUpdated();
-
-
-
-			//for each(var t:int = 0; t<xml.media.tags.tag.length(); t++){
-			//var tag = xml.media.tags.tag[t];
-			//var alreadyExists = false;
-
-			trace("clickedTagsArray  "+clickedTags);
-			for each(var tag1: String in clickedTags) {
-				trace("clickedTag  "+tag1);
-				for each(var tagged1: MediaModel in collection) {
-					for each(var tagged2: String in tagged1.tagz) {
-						if (tag1 == ("<tag>"+tagged2+"<tag>")) {
-							trace("Tag Match!");
-						}else{
-							trace("No tag matches");
-						}
-					}
+		
+		public static function toggleTag(tag:String):Boolean {
+			
+			var removedTag:Boolean = false;
+			
+			for(var i:int = clickedTags.length - 1; i >= 0; i--){
+				if(clickedTags[i] == tag){
+					clickedTags.splice(i, 1);
+					removedTag = true;
 				}
 			}
-			//if(alreadyExists == false)tags.push(tag);
-			//}			
-
-			//activated = !activated;
-			//if (activated)ArcadeOS.clickedTags.push(sayMyName);
-			//if(!activated)ArcadeOS.clickedTags.splice(sayMyName);*/
+			
+			if(removedTag == false){
+				clickedTags.push(tag);
+				main.layout(true);
+				return true;
+			}
+			main.layout(true);
+			return false;
+		}
+		public static function getMediaByTags(): Array {
+			
+			if(clickedTags.length == 0) return collection;
+			
+			var models:Array = new Array();
+			
+			for each(var model: MediaModel in collection) {
+				for each(var tag:String in model.tagz){
+					var modelAdded:Boolean = false;
+					for each(var ctag:String in clickedTags){
+						if(ctag == tag){
+							models.push(model);
+							modelAdded = true;
+							break;
+						}
+					}
+					if(modelAdded) break;
+				}
+			}
+			
+			return models;
 		}
 	}
 }
