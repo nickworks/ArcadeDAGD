@@ -47,7 +47,7 @@
 		 */
 		public function ArcadeOS() {
 			Keyboard.setup(stage);
-			
+
 			main = this;
 			sideView = new SideView();
 			addChild(sideView);
@@ -79,11 +79,11 @@
 			if (mainView) mainView.update();
 			if (sideView) sideView.update();
 			Keyboard.update();
-			
-			for each(var t:String in tags){
-				
+
+			for each(var t: String in tags) {
+
 			}
-			trace(clickedTags);
+			//trace(clickedTags);
 		}
 		/**
 		 * loadData() pulls data from the .xml file and
@@ -110,14 +110,14 @@
 		private function doneLoadingData(e: Event): void {
 			var data: String = (e.target as URLLoader).data;
 			var xml: XML = new XML(data);
-			
-			for (var t:int = 0; t<xml.media.tags.tag.length(); t++){
+
+			for (var t: int = 0; t < xml.media.tags.tag.length(); t++) {
 				var tag = xml.media.tags.tag[t];
 				var alreadyExists = false;
-				for each(var tag1:String in tags){
-					if(tag1 == tag) alreadyExists = true;
+				for each(var tag1: String in tags) {
+					if (tag1 == tag) alreadyExists = true;
 				}
-				if(alreadyExists == false)tags.push(tag);
+				if (alreadyExists == false) tags.push(tag);
 			}
 			for (var i: int = 0; i < xml.media.length(); i++) {
 				collection.push(new MediaModel(xml.media[i]));
@@ -171,7 +171,7 @@
 			if (selectedView != null) selectedView.setSelected(false);
 			selectedView = view;
 			selectedView.setSelected(true);
-			main.mainView.selectedY=selectedView.y
+			main.mainView.selectedY = selectedView.y
 			//trace(selectedView.y);
 
 		}
@@ -187,13 +187,35 @@
 			main.addChild(newMainView);
 			main.layout(false);
 		}
-		public static function toggleTags(clickedTag:String):void{
-			trace(clickedTag);
-			var thumbView = new ThumbView();
+		public static function toggleTags(): void {
+			var thumbView: ThumbView = new ThumbView();
 			thumbView.dataUpdated();
+
+
+
+			//for each(var t:int = 0; t<xml.media.tags.tag.length(); t++){
+			//var tag = xml.media.tags.tag[t];
+			//var alreadyExists = false;
+
+			trace("clickedTagsArray  "+clickedTags);
+			for each(var tag1: String in clickedTags) {
+				trace("clickedTag  "+tag1);
+				for each(var tagged1: MediaModel in collection) {
+					for each(var tagged2: String in tagged1.tagz) {
+						if (tag1 == ("<tag>"+tagged2+"<tag>")) {
+							trace("Tag Match!");
+						}else{
+							trace("No tag matches");
+						}
+					}
+				}
+			}
+			//if(alreadyExists == false)tags.push(tag);
+			//}			
+
 			//activated = !activated;
 			//if (activated)ArcadeOS.clickedTags.push(sayMyName);
-			//if(!activated)ArcadeOS.clickedTags.splice(sayMyName);
+			//if(!activated)ArcadeOS.clickedTags.splice(sayMyName);*/
 		}
 	}
 }

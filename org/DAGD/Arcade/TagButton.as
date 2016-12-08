@@ -132,12 +132,12 @@
 			activate();
 		}
 		public override function activate(): void {
-			//trace(sayMyName);
-			ArcadeOS.toggleTags(sayMyName);
-			//activated = !activated;
-			//if (activated)ArcadeOS.clickedTags.push(sayMyName);
-			//if(!activated)ArcadeOS.clickedTags.splice(sayMyName);
+			trace(sayMyName);
 			
+			activated = !activated;
+			if (activated)ArcadeOS.clickedTags.push(sayMyName);
+			if(!activated)ArcadeOS.clickedTags.splice(sayMyName);
+			ArcadeOS.toggleTags();
 			//var mainView:MainView=new MainView();
 			//ArcadeOS.changeMainView(ArcadeOS.mainView);
 			

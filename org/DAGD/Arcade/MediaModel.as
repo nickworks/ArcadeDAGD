@@ -26,7 +26,7 @@
 				//trace(xml.media.tags.tag[i]);
 			}*/
 			tagz.push(xml.tags);
-			//trace(tagz);
+			trace("these are my tags"+tagz);
 			//trace("boom");
 			//trace(xml.media.tags.tag);
 			

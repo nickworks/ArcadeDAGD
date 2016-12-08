@@ -26,8 +26,8 @@
 		 */
 		public override function dataUpdated(): void {
 			makeButtons();
-			trace("aloha");
-			
+			trace("thumbView dataUPdated");
+
 		}
 
 		/**
@@ -43,17 +43,31 @@
 			removeButtons();
 
 			// CREATE NEW MEDIA BUTTONS:
-			for (var i = 0; i < ArcadeOS.collection.length; i++) {
-				var data: MediaModel = ArcadeOS.collection[i];
-				var bttn: MediaButton = new MediaButton(i, data);
-				
+			if (ArcadeOS.clickedTags.length > 0) {
+				trace("i have tags");
+				for (var i1 = 0; i1 < ArcadeOS.clickedTags.length; i1++) {
+					var data1: MediaModel = ArcadeOS.collection[i1];
+					var bttn1: MediaButton = new MediaButton(i1, data1);
+
+					//if(data.tagz.indexOf(tagButton.sayMyName)<0)tags.push(xml.media.tags.tag[t]);
+					//var tag: String = xml.media.tags.tag[i];
+					//trace(data1.tagz); //works
+					addChild(bttn1);
+					buttons.push(bttn1);
+				}
+			}
+
+			for (var i2 = 0; i2 < ArcadeOS.collection.length; i2++) {
+				var data2: MediaModel = ArcadeOS.collection[i2];
+				var bttn2: MediaButton = new MediaButton(i2, data2);
+
 				//if(data.tagz.indexOf(tagButton.sayMyName)<0)tags.push(xml.media.tags.tag[t]);
 				//var tag: String = xml.media.tags.tag[i];
-				trace(data.tagz);//works
-				addChild(bttn);
-				buttons.push(bttn);
+				//trace(data2.tagz); //works
+				addChild(bttn2);
+				buttons.push(bttn2);
 			}
-			
+
 		}
 		/**
 		 * removeButtons() runs through the "buttons" array
@@ -65,11 +79,17 @@
 		 */
 		private function removeButtons(): void {
 			// REMOVE ALL OLD BUTTONS:
+			trace("remove meeeee1");
 			for each(var bttn: MediaButton in buttons) {
+				
+				trace("remove meeeee2");
+
 				bttn.dispose();
 				removeChild(bttn);
 			}
 			buttons = new Array();
+			trace("remove meeeee3");
+
 		}
 		/**
 		 * layout() lays out MainView as the ThumbView
@@ -105,7 +125,7 @@
 
 			}
 		}
-		private function getColumns():int {
+		private function getColumns(): int {
 			return Math.floor(w / MediaButton.WIDTH);
 		}
 		override public function dispose(): void {

@@ -2,6 +2,7 @@
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import flash.events.Event;
+	
 
 	public class View extends Sprite {
 
