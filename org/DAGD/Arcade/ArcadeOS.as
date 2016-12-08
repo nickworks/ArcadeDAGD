@@ -181,7 +181,6 @@
 		//--------------------------------------------------------------------------Add to Array to be recalled later
 		public static function goBackToTile():void{
 			if(viewStorage!=null){
-				trace("stuff in storage");
 				for each(var oldView:MainView in viewStorage){
 					changeMainView(oldView);
 					viewStorage.splice(oldView,1);
@@ -193,10 +192,10 @@
 		public static function changeMainView(newMainView: MainView): void {
 			if (main.mainView != null) {
 				viewStorage.push(main.mainView);
-				trace("pop "+viewStorage);
 				//main.mainView.dispose();
 				main.removeChild(main.mainView);
 			}
+			//main.mainView.selectedY=0;
 			main.mainView = newMainView;
 			main.addChild(newMainView);
 			main.layout(false);
