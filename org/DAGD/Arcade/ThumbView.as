@@ -26,8 +26,6 @@
 		 */
 		public override function dataUpdated(): void {
 			makeButtons();
-			trace("thumbView dataUPdated");
-
 		}
 
 		/**
@@ -122,6 +120,7 @@
 			index--;
 			if (index >= 0) {
 				ArcadeOS.setSelectedView(buttons[index]);
+				scrollToView(buttons[index]);
 			}
 		}
 		override public function lookupRight(): void {
@@ -129,6 +128,7 @@
 			index++;
 			if (index < buttons.length) {
 				ArcadeOS.setSelectedView(buttons[index]);
+				scrollToView(buttons[index]);
 			}
 		}
 		override public function lookupUp(): void {
@@ -136,6 +136,7 @@
 			index -= getColumns();
 			if (index >= 0) {
 				ArcadeOS.setSelectedView(buttons[index]);
+				scrollToView(buttons[index]);
 			}
 		}
 		override public function lookupDown(): void {
@@ -143,6 +144,7 @@
 			index += getColumns();
 			if (index < buttons.length) {
 				ArcadeOS.setSelectedView(buttons[index]);
+				scrollToView(buttons[index]);
 			}
 		}
 	}

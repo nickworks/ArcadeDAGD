@@ -8,7 +8,6 @@
 
 		private var targetY: Number = 0;
 		public var selectedY: Number = 0;
-		private var contentH: int;
 		private var thumbHeight: Number = ProjectView.IMG_CONTAINER_HEIGHT;
 
 
@@ -20,41 +19,13 @@
 
 		}
 		public override function update(): void {
-			var heightOfContent: int = this.height;
-			contentH = heightOfContent;
-			if(heightOfContent<screenHeight){
-				targetY=0;
-			}
-			else if(selectedY>heightOfContent-screenHeight){
-				targetY=-heightOfContent+screenHeight;
-				trace("two");
-				}
-			else if(selectedY>screenHeight-thumbHeight){
-				targetY = -selectedY+thumbHeight;
-				trace("one");
-			}else{
-				targetY=0;
-			}
-			
-			
-			//trace(screenHeight);
-			//trace(heightOfContent);
-			//trace(targetY);
-			//trace(selectedY);
-			//trace(thumbHeight);
-			
 			y += (targetY - y) * .1;
-			
 
 		}
 		public override function scroll(amount: Number): void {
-			// find height of content
 
-			//contentH=heightOfContent;
-			//trace(heightOfContent);//1369
-			//trace(selectedY);
 			// if content is less than container, no scrolling:
-			if (contentH < h) {
+			if (this.height < h) {
 				targetY = 0;
 				return;
 			}
@@ -66,10 +37,17 @@
 			if (targetY > 0) targetY = 0;
 
 			// clamp min end:
-			var min: int = contentH - h; // heightOfContent - heightOfContainer
+			var min: int = this.height - h; // heightOfContent - heightOfContainer
 			if (targetY < -min) targetY = -min;
 
 		}
+		public function scrollToView(view:View):void {
+			var yMin:Number = view.y;
+			var yMax:Number = view.y + view.height;
+			
+			if(yMin + y < 0) targetY = -yMin;
+			if(yMax + y > h) targetY = h - yMax;
+			
+		}
 	}
-
 }

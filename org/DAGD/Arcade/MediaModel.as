@@ -18,13 +18,6 @@
 		public function MediaModel(xml:XML) {
 			title = xml.name;
 			desc = xml.desc;
-			//trace(xml.media.tags.tag.length);
-			//trace(xml.tags.tag);
-			/*for (var i:int = 0; i<xml.media.tags.tag.length(); i++){
-				trace(xml.media.tags.tag.length);
-				tagz.push(xml.tags.tag);
-				//trace(xml.media.tags.tag[i]);
-			}*/
 			
 			for each(var tag:String in xml.tags.tag){
 				tagz.push(tag);
